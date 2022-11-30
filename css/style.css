@@ -1,0 +1,319 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald:300,400,900');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300');
+
+header{
+	text-align: center;
+}
+
+body{
+	font-family: 'Roboto', sans-serif;
+	/* text-align: center; */
+  	margin: 0 auto; 
+}
+p {
+    color: white;
+    text-align: center;
+    font-weight: lighter;
+    margin: 2px 0px 5px 0px;
+    line-height: 20px;
+}
+.cp {
+    font-size: 0.8rem;
+    color: white;
+    text-align: center;
+    /* font-weight: lighter; */
+    margin: 2px 0px 5px 0px;
+    line-height: 10px;
+}
+.alignCentre{
+    text-align: center;
+}
+
+.opacityOff{
+    opacity: 0.3;
+}
+img {
+    margin-right: 0.2rem;
+}
+.picto{
+    width: 40px;
+}
+.visu{
+    width: 135px;
+}
+legend{
+    font-family: Oswald, sans-serif;
+    margin: 0px auto;
+}
+
+h1,h2,h3,p,.calcul {
+    font-family: 'Oswald', sans-serif;
+   
+}
+h1{
+    text-align: center;
+}
+h3 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+    color: white;
+}
+.large {
+    width: 300px;
+    /* padding: 0rem 0rem 0rem 0.5rem; */
+    margin: 5px;
+}
+.center{
+    margin: 0px auto;
+}
+@media only screen and (min-width: 450px) {
+    .large {
+        width: 98%;
+        /* padding: 0rem 0rem 0rem 0.5rem; */
+        margin: 5px;
+    }
+    
+}
+.justifInter{
+    padding: 0rem 0.5rem 0.5rem 0.5rem; 
+}
+.topBox{
+    background-image: -webkit-linear-gradient(95deg, #ffffff00 23%, #005CB2 20%);
+    height: 240px;
+    padding: 0.3rem;
+}
+.zig{
+    height: 14px;
+    width: 48%;
+    background: linear-gradient(135deg, #015cb2 35%, transparent 25%) -7px 0, linear-gradient(225deg, #015cb2 35%, transparent 25%) -7px 0, linear-gradient(315deg, #015cb2 35%, transparent 25%), linear-gradient(45deg, #015cb2 35%, transparent 25%);
+    background-size: 14px 14px;
+    background-color: white;
+    margin: 0px auto;
+  }
+.pattern-diagonal-lines-sm {
+    background-image: repeating-linear-gradient(-45deg, currentColor 0, currentColor 1px, transparent 0, transparent 50%);
+    background-size: 15px 15px;
+    color: #cfcece;
+}
+mark{
+    background-color: white;
+    padding: 0px 5px 0px 5px;
+}
+fieldset{
+    text-align: center;
+    border-color: #005cb236;
+}
+input[type="checkbox"],
+[type="radio"] {
+    margin-right: 1rem;
+    display: contents;
+}
+
+.misEnForme {
+    background: #e0ffff;
+    font-family: georgia;
+    font-size: 1.2rem;
+    margin: 1rem;
+}
+
+/* tableau */
+table,tr,th,td{
+    /* border: 1px solid black; */
+    color: black;
+    line-height: 8px;
+    border-collapse: collapse;
+    padding: 0%;
+}
+tr{
+    height: 25px;
+}
+th{
+    /* text-align: right; */
+    padding-left: 3px;
+    padding-right: 4px;
+    width: 30%;
+}
+.tabTitre{
+    background-color: #005CB2;
+    color: #ffffff;
+    font-weight: 900;
+    font-family: 'Oswald', sans-serif;
+    text-align: left;
+    padding-bottom: 4px;
+    padding-left: 6px;
+}
+.tabMin{
+    background-color: #CCE8FF;
+}
+.tabMoy{
+    background-color: #42A5F5;
+    color: #ffffff;
+}
+.tabMax{
+    background-color: #1378D6;
+    color: #ffffff;
+}
+.enLigne{
+    display: flex;
+    align-items: center;
+}
+.retraitGauche{
+    padding-left: 5px;
+}
+.fondBlanc{
+    background-color: #ffffff;
+}
+.gras{
+    font-weight: bold;
+}
+/* Fin de tableau */
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.flexTo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+label {
+    cursor: pointer;
+    user-select: none;
+    display: block;
+    width: max-content;
+}
+.choixButtomOn{
+    position: relative;
+    border: 1px solid #005CB2;
+    background-color: #005cb236;
+    border-radius: 10px;
+    transition: 0.4s;
+    padding: 0 15px;
+    height: 36px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    margin: 3px;
+}
+input[type=checkbox]:hover~.choixButtomOn,
+input[type=radio]:hover~.choixButtomOn {
+    background-color: #68b6ff;
+}
+
+input[type=checkbox]:checked~.choixButtomOn,
+input[type=radio]:checked~.choixButtomOn {
+    background-color: #005CB2;
+}
+.fondFiltres{
+    width: max-content;
+    margin: 0px auto;
+}
+.filtreMaster{
+    display:inline-block;
+    border-radius: 50%;
+    padding: 0 0 0 0px;
+    height: 70px;
+    width: 70px;
+    background:url("../images/filtres.png") no-repeat;
+    background-color: #005cb236;
+    background-size: 90%;
+    background-position: center;
+}
+.filtre{
+    display:inline-block;
+    border-radius: 50%;
+    padding: 0 0 0 0px;
+    height: 40px;
+    width: 40px;
+}
+.filtreAppart{
+    background:url("../images/appartOnFilter.png") no-repeat;
+    background-color: #005cb236;
+    background-position: center;
+}
+.filtreMaison{
+    background:url("../images/maisonOnFilter.png") no-repeat;
+    background-color: #005cb236;
+    background-position: center;
+}
+.filtreAppartMaison{
+    background:url("../images/appartMaisonOnFilter.png") no-repeat;
+    background-color: #005cb236;
+    background-position: center;
+}
+.filtreGare{
+    background:url("../images/gareOnFilter.png") no-repeat;
+    background-color: #005cb236;
+    background-position: center;
+}
+.filtreGareNo{
+    background:url("../images/gareOffFilter.png") no-repeat;
+    background-color: #005cb236;
+    background-position: center;
+}
+.filtreDoc{
+    background:url("../images/docteurOnFilter.png") no-repeat;
+    background-color: #005cb236;
+    background-position: center;
+}
+.filtreDocNo{
+    background:url("../images/docteurOffFilter.png") no-repeat;
+    background-color: #005cb236;
+    background-position: center;
+}
+.filtreMontagne{
+    background:url("../images/montagne.png") no-repeat;
+    background-color: #005cb236;
+    background-position: center;
+}
+.filtreLittoral{
+    background:url("../images/littoral.png") no-repeat;
+    background-color: #005cb236;
+    background-position: center;
+}
+.filtreCampagne{
+    background:url("../images/campagne.png") no-repeat;
+    background-color: #005cb236;
+    background-position: center;
+}
+.filtreVille{
+    background:url("../images/ville.png") no-repeat;
+    background-color: #005cb236;
+    background-position: center;
+}
+
+.search {
+  text-align: center;
+}
+
+input[type=number]{
+    background-color: #005cb236;
+    border: 2px solid #005CB2;
+    padding: 10px 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+input[type=search] {
+    background-color: #005cb236;
+    border: 2px solid #005CB2;
+    padding: 3px 3px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+input {
+    border-radius: 5px;
+    border-color: white;
+    font-size: 1.5em;
+    text-align: center;
+    width: 150px;
+}
+
+input::placeholder {
+    color: rgb(153, 153, 153);
+    font-size: 1em;
+    font-style: italic;
+}

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sud-Ouest - Immobilier</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- <link href="https://unpkg.com/pattern.css" rel="stylesheet"> -->
+</head>
+
+<body>
+    <div id="app">
+        <h1>Je veux connaitre le prix d'une surface de </h1>
+        <div class="search">
+            <input type="number" v-model="surface" placeholder="ex. 150 m2" min="1">
+        </div>
+
+        <!-- * Filtre sur les deps -->
+        <fieldset>
+            <legend><mark>Choisir un département</mark></legend>
+            <div class="flex">
+                <label>
+                    <input type="checkbox" checked v-model="charente">
+                    <span class="choixButtomOn">Charente</span>
+                </label>
+                <label>
+                    <input type="checkbox" checked v-model="charenteMaritime">
+                    <span class="choixButtomOn">Charente-Maritime</span>
+                </label>
+                <label>
+                    <input type="checkbox" checked v-model="correze">
+                    <span class="choixButtomOn">Corrèze</span>
+                </label>
+                <label>
+                    <input type="checkbox" checked v-model="creuse">
+                    <span class="choixButtomOn">Creuse</span>
+                </label>
+                <label>
+                    <input type="checkbox" checked v-model="dordogne">
+                    <span class="choixButtomOn">Dordogne</span>
+                </label>
+                <label>
+                    <input type="checkbox" checked v-model="gironde">
+                    <span class="choixButtomOn">Gironde</span>
+                </label>
+                <label>
+                    <input type="checkbox" checked v-model="landes">
+                    <span class="choixButtomOn">Landes</span>
+                </label>
+                <label>
+                    <input type="checkbox" checked v-model="lotGaronne">
+                    <span class="choixButtomOn">Lot-et-Garonne</span>
+                </label>
+                <label>
+                    <input type="checkbox" checked v-model="pyrAtlantiques">
+                    <span class="choixButtomOn">Pyrénées-Atlantiques</span>
+                </label>
+                <label>
+                    <input type="checkbox" checked v-model="dxSevres">
+                    <span class="choixButtomOn">Deux-Sèvres</span>
+                </label>
+                <label>
+                    <input type="checkbox" checked v-model="vienne">
+                    <span class="choixButtomOn">Vienne</span>
+                </label>
+                <label>
+                    <input type="checkbox" checked v-model="hteVienne">
+                    <span class="choixButtomOn">Haute-Vienne</span>
+                </label>
+            </div>
+        </fieldset>
+        <!-- * Fin Filtre sur les deps -->
+        <!-- * Affichage filtres -->
+        <div v-if="(surface != '' || surface != 0) && ((charente != false) || (charenteMaritime != false) || (dordogne != false) ||
+    (gironde != false) || (landes != false) || (creuse != false) ||
+    (correze != false) || (hteVienne != false) || (vienne != false) || 
+    (dxSevres != false) || (pyrAtlantiques != false) || (lotGaronne != false))">
+            <!-- <button @click="filterFull = !filterFull">Filtre</button> -->
+            <label class="center">
+                <input type="checkbox" checked v-model="filterFull" class="">
+                <span class="choixButtomOn filtreMaster"></span>
+            </label>
+        </div>
+
+        <!-- * Fin Affichage filtres -->
+        <div v-if="(filterFull != false) && ((charente != false) || (charenteMaritime != false) || (dordogne != false) ||
+    (gironde != false) || (landes != false) || (creuse != false) ||
+    (correze != false) || (hteVienne != false) || (vienne != false) || 
+    (dxSevres != false) || (pyrAtlantiques != false) || (lotGaronne != false))
+    && surface !='' ">
+            <!-- * Filtre sur la ville -->
+            <fieldset  class="fondFiltres">
+                <legend>Rechercher une commune</legend>
+                <input type="search" v-model="filtreVille" @input="handleInputOnChange()">
+                <!-- <input type="text"  value="filtreVille.toUpperCase()"> -->
+            </fieldset>
+            <!-- <p style="color: black;">{{filtreVille.toUpperCase()}}</p> -->
+            <!-- * Fin Filtre sur la ville -->
+            <div class="flexTo">
+
+                <!-- * Filtre sur le type de biens -->
+                <fieldset>
+                    <legend>Type de bien</legend>
+                    <div class="flex">
+                        <label>
+                            <input type="radio" v-model="choix" value="Appartement">
+                            <span class="choixButtomOn filtre filtreAppart"></span>
+                        </label>
+                        <label>
+                            <input type="radio" v-model="choix" value="Maison">
+                            <span class="choixButtomOn filtre filtreMaison"></span>
+                        </label>
+                        <label>
+                            <input type="radio" v-model="choix" value="Tout" checked>
+                            <span class="choixButtomOn filtre filtreAppartMaison"></span>
+                        </label>
+                    </div>
+                </fieldset>
+                <!-- * Fin Filtre sur le type de biens -->
+
+                <!-- * Filtre sur les commodités -->
+                <fieldset>
+                    <legend>Services</legend>
+                    <div class="flex">
+                        <label>
+                            <input type="checkbox" checked v-model="gare">
+                            <span class="choixButtomOn filtre filtreGare"></span>
+                        </label>
+                        <label>
+                            <input type="checkbox" checked v-model="gareNo">
+                            <span class="choixButtomOn filtre filtreGareNo"></span>
+                        </label>
+                        <label>
+                            <input type="checkbox" checked v-model="docteur">
+                            <span class="choixButtomOn filtre filtreDoc"></span>
+                        </label>
+                        <label>
+                            <input type="checkbox" checked v-model="docteurNo">
+                            <span class="choixButtomOn filtre filtreDocNo"></span>
+                        </label>
+                    </div>
+                </fieldset>
+                <!-- * Fin Filtre sur les commodités -->
+                <!-- * Filtre sur la typologie -->
+                <fieldset>
+                    <legend>Zones</legend>
+                    <div class="flex">
+                        <label>
+                            <input type="checkbox" checked v-model="montagne">
+                            <span class="choixButtomOn filtre filtreMontagne"></span>
+                        </label>
+                        <label>
+                            <input type="checkbox" checked v-model="littoral">
+                            <span class="choixButtomOn filtre filtreLittoral"></span>
+                        </label>
+                        <label>
+                            <input type="checkbox" checked v-model="campagne">
+                            <span class="choixButtomOn filtre filtreCampagne"></span>
+                        </label>
+                        <label>
+                            <input type="checkbox" checked v-model="ville">
+                            <span class="choixButtomOn filtre filtreVille"></span>
+                        </label>
+                    </div>
+                </fieldset>
+                <!-- * Fin Filtre sur les commodités -->
+                <!-- * Filtre sur le prix appart -->
+                <fieldset v-if="choix == 'Appartement'">
+                    <legend>Filtre par prix</legend>
+                    <button @click="triPrixAppPetit">Moins cher</button>
+                    <button @click="triPrixAppGrand">Plus cher</button>
+                </fieldset>
+                <!-- * Fin filtre sur le prix appart -->
+                <!-- * Filtre sur le prix maison -->
+                <fieldset v-if="choix == 'Maison'">
+                    <legend>Filtre par prix</legend>
+                    <button @click="triPrixMaisPetit">Moins cher</button>
+                    <button @click="triPrixMaisGrand">Plus cher</button>
+                </fieldset>
+                <!-- * Fin filtre sur le prix maison -->
+            </div>
+        </div>
+            <div v-else></div>
+       
+
+        <!-- * Vignette -->
+        <div class="flex center">
+            <!-- ajout de index pour fonction computed (calcul)  -->
+            <div v-for="(p, index) in personnes">
+                <div v-if="(
+                    ((charente && p.Dep == 'Charente')
+                    || (charenteMaritime && p.Dep == 'Charente-Maritime')
+                    || (dordogne && p.Dep == 'Dordogne')
+                    || (gironde && p.Dep == 'Gironde')
+                    || (landes && p.Dep == 'Landes')
+                    || (creuse && p.Dep == 'Creuse')
+                    || (correze && p.Dep == 'Corrèze')
+                    || (hteVienne && p.Dep == 'Haute-Vienne')
+                    || (vienne && p.Dep == 'Vienne')
+                    || (dxSevres && p.Dep == 'Deux-Sèvres')
+                    || (pyrAtlantiques && p.Dep == 'Pyrénées-Atlantiques')
+                    || (lotGaronne && p.Dep == 'Lot-et-Garonne') 
+                    )
+                    && ((montagne && p.Typologie == 'Montagne')
+                    || (littoral && p.Typologie == 'Littoral')
+                    || (campagne && p.Typologie == 'Campagne')
+                    || (ville && p.Typologie == 'Ville'))
+                    && (
+                        ((gare && p.Gare == 'Oui') || (gareNo && p.Gare == 'Non'))
+                        && ((boulangerie && p.Boulangerie == 'Oui') || (boulangerieNo && p.Boulangerie == 'Non'))
+                        && ((docteur && p.MedecinGene == 'Oui') || (docteurNo && p.MedecinGene == 'Non'))
+                        && ((creche && p.Creche == 'Oui') || (crecheNo && p.Creche == 'Non'))
+                    )
+                    && ((choix == 'Appartement') || (choix == 'Maison') || (choix == 'Tout'))
+                    && (p.Ville.indexOf(filtreVille)>=0 || filtreVille=='')
+                    && (surface !='')
+                    )" class="pattern-diagonal-lines-sm large">
+                    <div class="topBox">
+                        <!-- <h3>{{p.Ville.replace("Saint", "St")}} ({{p.CP}})</h3> -->
+                        <h3>{{calcul[index]}}</h3>
+                        <div class="cp">({{p.CP.toLocaleString()}})</div>
+                        <div class="zig"></div>
+                        <p>Arrondissement : {{calculArr[index]}}<br>Zone d’emploi : {{calculEmpl[index]}}
+                        </p>
+                        <p>Services</p>
+                        <div class="alignCentre">
+                            <img src="images/gare.png" :class="{opacityOff: p.Gare == 'Non'}" class="picto" alt="Alps">
+                            <!-- <img src="images/boulanger.png" :class="{opacityOff: p.Boulangerie == 'Non'}" class="picto" alt="Alps"> -->
+                            <img src="images/docteur.png" :class="{opacityOff: p.MedecinGene == 'Non'}" class="picto"
+                                alt="Alps">
+                            <!-- <img src="images/creche.png" :class="{opacityOff: p.Creche == 'Non'}" class="picto" alt="Alps"> -->
+                        </div>
+                    </div>
+                    <div class="justifInter">
+                        <div v-if="choix == 'Appartement'" class="enLigne">
+                            <img src="images/appart.png" class="visu" alt="Alps">
+                            <table style="width:50%">
+                                <tr>
+                                    <th class="tabTitre" colspan="2">Appartement</th>
+                                </tr>
+                                <tr>
+                                    <th class="tabMin">Min</th>
+                                    <td class="retraitGauche fondBlanc">{{appartPrixMin[index]}}</td>
+                                </tr>
+                                <tr class="gras">
+                                    <th class="tabMoy">Moy</th>
+                                    <td class="retraitGauche fondBlanc">{{appartPrixMoy[index]}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="tabMax">Max</th>
+                                    <td class="retraitGauche fondBlanc">{{appartPrixMax[index]}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div v-if="choix == 'Maison'" class="enLigne">
+                            <img src="images/maison.png" class="visu" alt="Alps">
+                            <table style="width:50%">
+                                <tr>
+                                    <th class="tabTitre" colspan="2">Maison</th>
+                                </tr>
+                                <tr>
+                                    <th class="tabMin">Min</th>
+                                    <td class="retraitGauche fondBlanc">{{maisPrixMin[index]}}
+                                    </td>
+                                </tr>
+                                <tr class="gras">
+                                    <th class="tabMoy">Moy</th>
+                                    <td class="retraitGauche fondBlanc">{{maisPrixMoy[index]}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="tabMax">Max</th>
+                                    <td class="retraitGauche fondBlanc">{{maisPrixMax[index]}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div v-if="choix == 'Tout'">
+                            <div class="enLigne">
+                                <img src="images/appart.png" class="visu" alt="Alps">
+                                <table style="width:50%">
+                                    <tr>
+                                        <th class="tabTitre" colspan="2">Appartement</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="tabMin">Min</th>
+                                        <td class="retraitGauche fondBlanc">{{appartPrixMin[index]}}</td>
+                                    </tr>
+                                    <tr class="gras">
+                                        <th class="tabMoy">Moy</th>
+                                        <td class="retraitGauche fondBlanc">{{appartPrixMoy[index]}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="tabMax">Max</th>
+                                        <td class="retraitGauche fondBlanc">{{appartPrixMax[index]}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="enLigne">
+                                <img src="images/maison.png" class="visu" alt="Alps">
+                                <table style="width:50%">
+                                    <tr>
+                                        <th class="tabTitre" colspan="2">Maison</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="tabMin">Min</th>
+                                        <td class="retraitGauche fondBlanc">{{maisPrixMin[index]}}</td>
+                                    </tr>
+                                    <tr class="gras">
+                                        <th class="tabMoy">Moy</th>
+                                        <td class="retraitGauche fondBlanc">{{maisPrixMoy[index]}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="tabMax">Max</th>
+                                        <td class="retraitGauche fondBlanc">{{maisPrixMax[index]}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- * Fin Vignette -->
+    </div>
+    <script src="js/done.js"></script>
+    <script language="javascript" type="text/javascript">
+        function bascule(hide) {
+            etat = document.getElementById(hide).style.display;
+            if (etat == "none") {
+                document.getElementById(hide).style.display = "block";
+            }
+            else {
+                document.getElementById(hide).style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>
