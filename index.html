@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sud-Ouest - Immobilier</title>
-    <script src="https://unpkg.com/vue@next"></script>
+    <!-- <script src="https://unpkg.com/vue@next"></script> -->
+    <script src="https://unpkg.com/vue@3.1.1/dist/vue.global.prod.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <!-- <link href="https://unpkg.com/pattern.css" rel="stylesheet"> -->
 </head>
@@ -92,7 +93,7 @@
     (dxSevres != false) || (pyrAtlantiques != false) || (lotGaronne != false))
     && surface !='' ">
             <!-- * Filtre sur la ville -->
-            <fieldset  class="fondFiltres">
+            <fieldset class="fondFiltres">
                 <legend>Rechercher une commune</legend>
                 <input type="search" v-model="filtreVille" @input="handleInputOnChange()">
                 <!-- <input type="text"  value="filtreVille.toUpperCase()"> -->
@@ -183,8 +184,8 @@
                 <!-- * Fin filtre sur le prix maison -->
             </div>
         </div>
-            <div v-else></div>
-       
+        <div v-else></div>
+
 
         <!-- * Vignette -->
         <div class="flex center">
